@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Happy Birthday DUDU!</title>
+	<link rel="stylesheet"  href="css/style.css">
+</head>
+<body>
+	<!-- Home Section -->
+	<section id="home">
+		<div class="hero">
+			<h1>Happy Birthday Dudu!</h1>
+			<p>Welcome to your special birthday page!</p>
+			<a href="#gallery" class="btn">View Gallery</a>
+		</div>
+	</section>
+
+	<!-- Countdown Section -->
+<section id="countdown">
+    <h2>Countdown to Dudu's Birthday!</h2>
+    <div id="timer"></div> <!-- Countdown will be shown here -->
+</section>
+<!-- JavaScript for the countdown and wishes -->
+<script>
+    // Set the date we're counting down to (April 17, 2024 at midnight)
+    let countDownDate = new Date("April 17, 2025 00:00:00").getTime();
+
+    // Update the countdown every 1 second
+    let countdownFunction = setInterval(function() {
+        let now = new Date().getTime();
+        let distance = countDownDate - now;
+
+        // Time calculations
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result
+        document.getElementById("timer").innerHTML = days + "d " + hours + "h " +
+        minutes + "m " + seconds + "s ";
+
+        // If the countdown is over
+        if (distance < 0) {
+            clearInterval(countdownFunction);
+            document.getElementById("timer").innerHTML = "HAPPY BIRTHDAY!";
+            document.getElementById("wishForm").style.display = "none"; // Hide the form
+            document.getElementById("wishes").style.display = "block"; // Show the wishes section
+        }
+    }, 1000);
+
+    // Handle the form submission
+    document.getElementById("wishForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent page refresh
+
+        // Capture the form data
+        const name = document.getElementById("name").value;
+        const message = document.getElementById("message").value;
+
+        // Create a new list item for the wish
+        const wishList = document.getElementById("wishList");
+        const listItem = document.createElement("li");
+        listItem.textContent = `${name}: ${message}`;
+        wishList.appendChild(listItem);
+
+        // Clear the form fields
+        document.getElementById("wishForm").reset();
+    });
+</script>
+
+	<!-- Photo Gallery Section -->
+	<section id="gallery">
+		<h2>Memorable Moments</h2>
+		<div>
+		    <img src="mem/14.JPG" alt="Memory14">
+		    <img src="mem/16.JPG" alt="Memory16">
+		</div>
+	</section>
+
+	<!-- Message Wall Section -->
+	<section id="message-wall">
+		<h2>Why I Love You</h2>
+		<ul>
+			<li>Your Kind Heart</li>
+			<li>Your Beautiful Smile</li>
+			<li>Your Sense of humor</li>
+			<li>The Way You Support Me</li>
+		</ul>
+	</section>
+
+	<!-- Birthday Playlist Section -->
+	<section id="playlist">
+		<h2>Birthday Playlist</h2>
+		<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0aJwo4u52vX8OFMBIxevy6?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+	</section>
+
+	
+
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeKUMMspm3h5IKUjyzL4R2TvCUlSwJjF3DKnmQy9-B0AbV1tQ/viewform?embedded=true" width="640" height="504" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+	
+</body>
+</html>
